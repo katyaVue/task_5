@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task1</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<style>
+    .article__item-top {
+        display: flex;
+        align-content: center;
+        gap: 20px;
+    }
+
+    .article__photo {
+        min-width: 30px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+    }
+
+    .article__photo img {
+        max-width: 100%;
+        border-radius: 50%;
+    }
+
+    .article__text {
+        display: flex;
+        align-items: center;
+    }
+
+    .text-info {
+        width: auto;
+        flex: 1 1 auto;
+    }
+
+    .article__text p {
+        margin: 0 10px 0 0;
+    }
+
+    .article__item-top a {
+        text-decoration: inherit;
+    }
+
+    .article__text {
+        color: blue;
+    }
+
+    .article__item-top a {
+        color: blue;
+    }
+
+    .article__text-info a span {
+        color: #000;
+    }
+
+    .article__text-info a p {
+        color: #000;
+    }
+
+    .article__text a:first-child p {
+        max-width: 160px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-right: 20px;
+    }
+
+    .article__title {
+        font-size: 20px;
+        line-height: 26px;
+        font-weight: 600;
+        color: blueviolet;
+        text-decoration: inherit;
+        margin: 10px 0;
+        display: block;
+    }
+
+    .article {
+        max-width: 700px;
+    }
+
+    .article__bottom p {
+        margin: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .article__item {
+        margin-bottom: 40px;
+    }
+</style>
+<body>
+<!--Задача 5. Самостійно сформуйте масив даних та виведіть фрагмент на зразок поданого (дані не обов’язково повинні співпадати)-->
+
+<div id="app">
+    <div class="thinks">
+        <div class="article">
+            <article v-for="(article, index) in vueArticles" :key="index" class="article__item">
+                <div class="article__item-top">
+                    <div class="article__photo">
+                        <a :href="article.url">
+                            <img :src="article.picture" alt="">
+                        </a>
+                    </div>
+                    <div class="article__text-info">
+                        <a :href="article.url">
+                            <span>
+                                {{ article.title }}
+                            </span>
+                        </a>
+                        <div class="article__text">
+                            <a :href="article.url">
+                                <p>{{ article.url }}</p>
+                            </a>
+                            <a href="/">Перекласти цю сторінку</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="article__bottom">
+                    <a class="article__title" :href="article.url">{{ article.title }}</a>
+                    <p>{{ article.description }}</p>
+                    <p>Источник: {{ article.source }}</p>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+<script>
+    const {createApp} = Vue
+    createApp({
+        data() {
+            return {
+                vueArticles: [
+                    {
+                        title: "Vue.js",
+                        picture: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png",
+                        description: "JavaScript-фреймворк с открытым исходным кодом для создания пользовательских интерфейсов. Легко интегрируется в проекты.",
+                        source: "Википедия",
+                        url: "https://ru.wikipedia.org/wiki/Vue"
+                    },
+                    {
+                        title: "Nuxt: The Intuitive Vue Framework · Nuxt",
+                        picture: "https://nuxt.com/assets/design-kit/icon-green.svg",
+                        description: "Nuxt is an open source framework that makes web development intuitive and powerful. Create performant and production-grade full-stack web apps and websites ",
+                        source: "Nuxt",
+                        url: "https://nuxt.com/"
+                    },
+                    {
+                        title: "VueJS — Прогрессивный JavaScript-фреймворк",
+                        picture: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAMFBMVEVHcExfn7xfn7xfn7xfn7z+//+Puc5ZnLre6vCkxda60+Dv9fjO3+h7rsZqpcBQmLfQ5/9SAAAABHRSTlMAy3M67HfsvAAAASBJREFUOI2FUwmSgzAMozTx7eT/v11Rrg1lFzEDAYtYlp1pAuZXucFrnla876Ir3g/xlfFfvBTkHz9wy+F9nkZ9TEmMR7Zd6ZGBl6sXzeRMXVhbjn2Rat3cTUIp2hE/CZ2iiloFw0prVwKTmYdUS8GNKL926BbkUT+Qqv2qgUl9i7tXFaM2EFCdh9cNGiDwQGhBkrITxKLpSChd/IhXrO0oY0thofXEYgTnqCFQ4y7CA4Vq8lAFhO9h1BGmpjT40CBBYRJMcCEyRZJxh0QjJAJ2ehLdGIWsAiuUCI34NRNHs2Dd4rZQb0vvvwmMfmn2rnp2ciQULYaZIS63BPzfliYzlb8IhT7mtSthH1r+GugPXtexv2J+PjjPR+/x8D4c/x+lPxUzghXNtgAAAABJRU5ErkJggg==",
+                        description: "Прогрессивный JavaScript-фреймворк с открытым исходным кодом для создания пользовательских интерфейсов.",
+                        source: "Habr",
+                        url: "https://habr.com/hubs/vuejs/articles"
+                    }
+                ]
+            }
+        },
+        methods: {},
+        computed: {}
+    }).mount('#app')
+</script>
+</body>
+</html>
