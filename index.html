@@ -98,7 +98,7 @@
 <div id="app">
     <div class="thinks">
         <div class="article">
-            <article v-for="(article, index) in vueArticles" :key="index" class="article__item">
+            <article v-for="(article, index) in listArticle" :key="index" class="article__item">
                 <div class="article__item-top">
                     <div class="article__photo">
                         <a :href="article.url">
@@ -130,36 +130,35 @@
 </div>
 <script>
     const {createApp} = Vue
-    createApp({
-        data() {
-            return {
-                vueArticles: [
-                    {
-                        title: "Vue.js",
-                        picture: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png",
-                        description: "JavaScript-фреймворк с открытым исходным кодом для создания пользовательских интерфейсов. Легко интегрируется в проекты.",
-                        source: "Википедия",
-                        url: "https://ru.wikipedia.org/wiki/Vue"
-                    },
-                    {
-                        title: "Nuxt: The Intuitive Vue Framework · Nuxt",
-                        picture: "https://nuxt.com/assets/design-kit/icon-green.svg",
-                        description: "Nuxt is an open source framework that makes web development intuitive and powerful. Create performant and production-grade full-stack web apps and websites ",
-                        source: "Nuxt",
-                        url: "https://nuxt.com/"
-                    },
-                    {
-                        title: "VueJS — Прогрессивный JavaScript-фреймворк",
-                        picture: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAMFBMVEVHcExfn7xfn7xfn7xfn7z+//+Puc5ZnLre6vCkxda60+Dv9fjO3+h7rsZqpcBQmLfQ5/9SAAAABHRSTlMAy3M67HfsvAAAASBJREFUOI2FUwmSgzAMozTx7eT/v11Rrg1lFzEDAYtYlp1pAuZXucFrnla876Ir3g/xlfFfvBTkHz9wy+F9nkZ9TEmMR7Zd6ZGBl6sXzeRMXVhbjn2Rat3cTUIp2hE/CZ2iiloFw0prVwKTmYdUS8GNKL926BbkUT+Qqv2qgUl9i7tXFaM2EFCdh9cNGiDwQGhBkrITxKLpSChd/IhXrO0oY0thofXEYgTnqCFQ4y7CA4Vq8lAFhO9h1BGmpjT40CBBYRJMcCEyRZJxh0QjJAJ2ehLdGIWsAiuUCI34NRNHs2Dd4rZQb0vvvwmMfmn2rnp2ciQULYaZIS63BPzfliYzlb8IhT7mtSthH1r+GugPXtexv2J+PjjPR+/x8D4c/x+lPxUzghXNtgAAAABJRU5ErkJggg==",
-                        description: "Прогрессивный JavaScript-фреймворк с открытым исходным кодом для создания пользовательских интерфейсов.",
-                        source: "Habr",
-                        url: "https://habr.com/hubs/vuejs/articles"
-                    }
-                ]
-            }
+    const vueArticles = [
+        {
+            title: "Vue.js",
+            picture: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png",
+            description: "JavaScript-фреймворк с открытым исходным кодом для создания пользовательских интерфейсов. Легко интегрируется в проекты.",
+            source: "Википедия",
+            url: "https://ru.wikipedia.org/wiki/Vue"
         },
-        methods: {},
-        computed: {}
+        {
+            title: "Nuxt: The Intuitive Vue Framework · Nuxt",
+            picture: "https://nuxt.com/assets/design-kit/icon-green.svg",
+            description: "Nuxt is an open source framework that makes web development intuitive and powerful. Create performant and production-grade full-stack web apps and websites ",
+            source: "Nuxt",
+            url: "https://nuxt.com/"
+        },
+        {
+            title: "VueJS — Прогрессивный JavaScript-фреймворк",
+            picture: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAMFBMVEVHcExfn7xfn7xfn7xfn7z+//+Puc5ZnLre6vCkxda60+Dv9fjO3+h7rsZqpcBQmLfQ5/9SAAAABHRSTlMAy3M67HfsvAAAASBJREFUOI2FUwmSgzAMozTx7eT/v11Rrg1lFzEDAYtYlp1pAuZXucFrnla876Ir3g/xlfFfvBTkHz9wy+F9nkZ9TEmMR7Zd6ZGBl6sXzeRMXVhbjn2Rat3cTUIp2hE/CZ2iiloFw0prVwKTmYdUS8GNKL926BbkUT+Qqv2qgUl9i7tXFaM2EFCdh9cNGiDwQGhBkrITxKLpSChd/IhXrO0oY0thofXEYgTnqCFQ4y7CA4Vq8lAFhO9h1BGmpjT40CBBYRJMcCEyRZJxh0QjJAJ2ehLdGIWsAiuUCI34NRNHs2Dd4rZQb0vvvwmMfmn2rnp2ciQULYaZIS63BPzfliYzlb8IhT7mtSthH1r+GugPXtexv2J+PjjPR+/x8D4c/x+lPxUzghXNtgAAAABJRU5ErkJggg==",
+            description: "Прогрессивный JavaScript-фреймворк с открытым исходным кодом для создания пользовательских интерфейсов.",
+            source: "Habr",
+            url: "https://habr.com/hubs/vuejs/articles"
+        }
+    ]
+    createApp({
+        computed: {
+            listArticle() {
+                return vueArticles
+            },
+        },
     }).mount('#app')
 </script>
 </body>
